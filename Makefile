@@ -1,4 +1,4 @@
-.PHONY: help steup venv dependencies freeze lint run clean clean-cache clean-venv
+.PHONY: help steup venv dependencies freeze lint run test clean clean-cache clean-venv
 
 .DEFAULT: help
 
@@ -21,7 +21,8 @@ LINTER = $(PYTHON) -m flake8
 
 help:
 	@echo "---------------HELP-----------------"
-	@echo "To run the project, type: make run"
+	@echo "To run the project, type: make run  "
+	@echo "To test the project, type: make test"
 	@echo "------------------------------------"
 
 # ----------------------- #
@@ -58,6 +59,10 @@ lint: venv
 
 run: dependencies
 	$(PYTHON) $(MAIN)
+
+test: dependencies
+	$(PIP) install pytest
+	$(PYTHON) -m pytest
 
 # ----------------------- #
 # Clean                   #
