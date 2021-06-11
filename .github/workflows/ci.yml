@@ -32,9 +32,9 @@ jobs:
       # Lint the source code
       - name: Lint the source code
         run: |
-          cd src && make lint
+          make lint
           
       # Test with pytest
       - name: Test with pytest
         run: |
-          cd src && make test
+          make test
