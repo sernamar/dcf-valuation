@@ -45,7 +45,7 @@ def organize_by_simulation(cash_flow_simulations):
 
 
 if __name__ == '__main__':
-    cash_flow_data = [[10000, 100], [1000000, 100],
+    cash_flow_data = [[1000000, 100], [1000000, 100],
                       [4000000, 300], [4000000, 600], [6000000, 1000]]
     discount_rate = .05
 
