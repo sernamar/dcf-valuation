@@ -1,3 +1,4 @@
+from matplotlib import pyplot as plt
 from numpy.random import default_rng
 
 
@@ -45,13 +46,13 @@ def organize_by_simulation(cash_flow_simulations):
 
 
 if __name__ == '__main__':
-    cash_flow_data = [[1000000, 100], [1000000, 100],
-                      [4000000, 300], [4000000, 600], [6000000, 1000]]
+    cash_flow_data = [[100, 3], [100, 5], [400, 7], [400, 9], [600, 11]]
     discount_rate = .05
 
-    number_of_simulations = 10
+    number_of_simulations = 1000
     simulated = organize_by_simulation(simulate_cash_flow_values(
         cash_flow_data, number_of_simulations))
 
     dcf = list(map(lambda x: compute_dcf(x, discount_rate), simulated))
-    print(f"Discounted Cash Flow simulations = {dcf}")
+    plt.hist(dcf)
+    plt.show()
