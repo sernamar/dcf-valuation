@@ -8,6 +8,8 @@
 
 MAIN = dcf.py
 REQUIREMENTS = requirements.txt
+SRC_DIRECTORY = src
+TEST_DIRECTORY = test
 VENV ?= venv
 
 VENV_ACTIVATE = $(VENV)/bin/activate
@@ -21,7 +23,7 @@ LINTER = $(PYTHON) -m flake8
 
 help:
 	@echo "---------------HELP-----------------"
-	@echo "To run the project, type: make run  "
+	@echo "To run the project, type: make run"
 	@echo "To test the project, type: make test"
 	@echo "------------------------------------"
 
@@ -54,15 +56,15 @@ lint: venv
 	$(LINTER) . --exclude=$(VENV) --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
 # ----------------------- #
-# Run the project         #
+# Run or test the project #
 # ----------------------- #
 
 run: dependencies
-	$(PYTHON) $(MAIN)
+	$(PYTHON) $(SRC_DIRECTORY)/$(MAIN)
 
 test: dependencies
 	$(PIP) install pytest
-	$(PYTHON) -m pytest ../test
+	$(PYTHON) -m pytest $(TEST_DIRECTORY)
 
 # ----------------------- #
 # Clean                   #

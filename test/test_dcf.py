@@ -1,4 +1,4 @@
-from dcf import compute_dcf
+from src.dcf import compute_dcf
 
 
 def test_dcf():
