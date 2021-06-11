@@ -14,21 +14,44 @@ def get_random_numbers(mean=0, standard_deviation=1, size=None):
     return rng.normal(mean, standard_deviation, size)
 
 
-def generate_cash_flow_values(mean_and_standard_deviation, size=1):
-    """Generate a list of numpy arrays with cash flow values generated with their
-mean and standard deviation.
+def simulate_cash_flow_values(mean_and_standard_deviation, size=1):
+    """Simulate cash flow values from their mean and standard deviation.
+The function returns a list of numpy arrays with cash flow values.
 
 Example:
-    Input:  [[1000, 50], [1010, 80]]
-    Output: [array([ 954.43264945,  985.02731123, 1013.48890123]),
- array([1068.63236401, 1045.83419035,  903.87104662])]"""
-    return [get_random_numbers(mean, standard_deviation, size)
-            for mean, standard_deviation in mean_and_standard_deviation]
+    Input:
+        mean_and_standard_deviation: [[100, 20], [-500, 10]]
+        size: 3
+
+    Output: [array([113.36222158,  77.39297513,  77.15350701]),
+ array([-506.58408186, -503.27855081, -500.37690891])]"""
+    simulated = [get_random_numbers(mean, standard_deviation, size)
+                 for mean, standard_deviation in mean_and_standard_deviation]
+    return simulated
+
+
+def organize_by_simulation(cash_flow_simulations):
+    "Organize cash flow values by simulation."
+    number_of_simulations = len(cash_flow_simulations[0])
+    number_of_years = len(cash_flow_simulations)
+    cash_flow_values = []
+    for i in range(number_of_simulations):
+        cash_flow = []
+        for j in range(number_of_years):
+            cash_flow.append(cash_flow_simulations[j][i])
+        cash_flow_values.append(cash_flow)
+
+    return cash_flow_values
 
 
 if __name__ == '__main__':
-    cash_flow_values = [1000000, 1000000, 4000000, 4000000, 6000000]
+    cash_flow_data = [[10000, 100], [1000000, 100],
+                      [4000000, 300], [4000000, 600], [6000000, 1000]]
     discount_rate = .05
-    dcf = compute_dcf(cash_flow_values, discount_rate)
-    print(f"Discounted Cash Flow = {dcf}")
-    print("Standard random numbers =", get_random_numbers(0, 1, 5))
+
+    number_of_simulations = 10
+    simulated = organize_by_simulation(simulate_cash_flow_values(
+        cash_flow_data, number_of_simulations))
+
+    dcf = list(map(lambda x: compute_dcf(x, discount_rate), simulated))
+    print(f"Discounted Cash Flow simulations = {dcf}")
