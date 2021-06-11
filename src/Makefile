@@ -62,7 +62,7 @@ run: dependencies
 
 test: dependencies
 	$(PIP) install pytest
-	$(PYTHON) -m pytest
+	$(PYTHON) -m pytest ../test
 
 # ----------------------- #
 # Clean                   #
