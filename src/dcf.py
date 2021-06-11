@@ -45,14 +45,19 @@ def organize_by_simulation(cash_flow_simulations):
     return cash_flow_values
 
 
+def simulate_dcf(cash_flow_data, discount_rate, number_of_simulations):
+    simulated = organize_by_simulation(simulate_cash_flow_values(
+        cash_flow_data, number_of_simulations))
+    return list(map(lambda x: compute_dcf(x, discount_rate), simulated))
+
+
 if __name__ == '__main__':
     cash_flow_data = [[100, 3], [100, 5], [400, 7], [400, 9], [600, 11]]
     discount_rate = .05
 
     number_of_simulations = 1000
-    simulated = organize_by_simulation(simulate_cash_flow_values(
-        cash_flow_data, number_of_simulations))
 
-    dcf = list(map(lambda x: compute_dcf(x, discount_rate), simulated))
+    dcf = simulate_dcf(cash_flow_data, discount_rate, number_of_simulations)
+
     plt.hist(dcf)
     plt.show()
