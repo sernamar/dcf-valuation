@@ -40,9 +40,8 @@ Example:
 def combine_cash_flow_simulations(simulations):
     cash_flow_values = []
     if simulations:
-        number_of_simulations = len(simulations[0])
-        for i in range(number_of_simulations):
-            cash_flow_values.append([item[i] for item in simulations])
+        cash_flow_values = [list(element)
+                            for element in zip(simulations[0], simulations[1])]
 
     return cash_flow_values
 
