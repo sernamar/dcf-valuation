@@ -32,14 +32,11 @@ Example:
 
 
 def combine_cash_flow_simulations(simulations):
-    number_of_simulations = len(simulations[0])
-    number_of_years = len(simulations)
     cash_flow_values = []
-    for i in range(number_of_simulations):
-        cash_flow = []
-        for j in range(number_of_years):
-            cash_flow.append(simulations[j][i])
-        cash_flow_values.append(cash_flow)
+    if (simulations != []):
+        number_of_simulations = len(simulations[0])
+        for i in range(number_of_simulations):
+            cash_flow_values.append([item[i] for item in simulations])
 
     return cash_flow_values
 
