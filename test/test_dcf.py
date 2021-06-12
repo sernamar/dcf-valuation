@@ -1,4 +1,5 @@
-from src.dcf import compute_dcf, get_random_numbers, simulate_cash_flow_values
+from src.dcf import (combine_cash_flow_simulations, compute_dcf,
+                     get_random_numbers, simulate_cash_flow_values)
 
 
 def test_compute_dcf():
@@ -24,3 +25,9 @@ def test_simulate_cash_flow_values():
 
     assert len(simulations) == number_of_years
     assert len(simulations[0]) == size
+
+
+def test_combine_cash_flow_simulations():
+    simulations = [[1, 2, 3], [4, 5, 6]]
+    expected = [[1, 4], [2, 5], [3, 6]]
+    assert combine_cash_flow_simulations(simulations) == expected
