@@ -26,7 +26,7 @@ Example:
 
     Output: [array([113.36222158,  77.39297513,  77.15350701]),
  array([-506.58408186, -503.27855081, -500.37690891])]"""
-    if (number_of_simulations > 0 and cash_flow_data != []):
+    if cash_flow_data and number_of_simulations > 0:
         simulated = [get_random_numbers(mean, standard_deviation,
                                         number_of_simulations)
                      for mean, standard_deviation in cash_flow_data]
@@ -37,7 +37,7 @@ Example:
 
 def combine_cash_flow_simulations(simulations):
     cash_flow_values = []
-    if (simulations != []):
+    if simulations:
         number_of_simulations = len(simulations[0])
         for i in range(number_of_simulations):
             cash_flow_values.append([item[i] for item in simulations])
