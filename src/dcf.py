@@ -26,8 +26,11 @@ Example:
 
     Output: [array([113.36222158,  77.39297513,  77.15350701]),
  array([-506.58408186, -503.27855081, -500.37690891])]"""
-    simulated = [get_random_numbers(mean, standard_deviation, size)
-                 for mean, standard_deviation in cash_flow_data]
+    if (size > 0 and cash_flow_data != []):
+        simulated = [get_random_numbers(mean, standard_deviation, size)
+                     for mean, standard_deviation in cash_flow_data]
+    else:
+        simulated = []
     return simulated
 
 
