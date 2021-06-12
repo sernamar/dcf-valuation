@@ -1,5 +1,6 @@
 from src.dcf import (combine_cash_flow_simulations, compute_dcf,
-                     get_random_numbers, simulate_cash_flow_values)
+                     get_random_numbers, simulate_cash_flow_values,
+                     simulate_dcf)
 
 
 def test_compute_dcf():
@@ -31,3 +32,13 @@ def test_combine_cash_flow_simulations():
     simulations = [[1, 2, 3], [4, 5, 6]]
     expected = [[1, 4], [2, 5], [3, 6]]
     assert combine_cash_flow_simulations(simulations) == expected
+
+
+def test_simulate_dcf():
+    # check that we get the right number of elements
+    cash_flow_data = [[100, 20], [-500, 10]]
+    discount_rate = .05
+
+    assert len(simulate_dcf(cash_flow_data, discount_rate, 0)) == 0
+    assert len(simulate_dcf(cash_flow_data, discount_rate, 1)) == 1
+    assert len(simulate_dcf(cash_flow_data, discount_rate, 4)) == 4
