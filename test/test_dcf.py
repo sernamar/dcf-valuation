@@ -1,4 +1,4 @@
-from src.dcf import compute_dcf, get_random_numbers
+from src.dcf import compute_dcf, get_random_numbers, simulate_cash_flow_values
 
 
 def test_compute_dcf():
@@ -13,3 +13,14 @@ def test_get_random_numbers():
     assert 0 == len(get_random_numbers(size=0))
     assert 1 == len(get_random_numbers(size=1))
     assert 4 == len(get_random_numbers(size=4))
+
+
+def test_simulate_cash_flow_values():
+    cash_flow_data = [[100, 20], [-500, 10]]
+    size = 3
+
+    simulations = simulate_cash_flow_values(cash_flow_data, size)
+    number_of_years = len(cash_flow_data)
+
+    assert len(simulations) == number_of_years
+    assert len(simulations[0]) == size
