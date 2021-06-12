@@ -15,19 +15,19 @@ def get_random_numbers(mean=0, standard_deviation=1, size=None):
     return rng.normal(mean, standard_deviation, size)
 
 
-def simulate_cash_flow_values(mean_and_standard_deviation, size=1):
+def simulate_cash_flow_values(cash_flow_data, size=1):
     """Simulate cash flow values from their mean and standard deviation.
 The function returns a list of numpy arrays with cash flow values.
 
 Example:
     Input:
-        mean_and_standard_deviation: [[100, 20], [-500, 10]]
+        cash_flow_data: [[100, 20], [-500, 10]]
         size: 3
 
     Output: [array([113.36222158,  77.39297513,  77.15350701]),
  array([-506.58408186, -503.27855081, -500.37690891])]"""
     simulated = [get_random_numbers(mean, standard_deviation, size)
-                 for mean, standard_deviation in mean_and_standard_deviation]
+                 for mean, standard_deviation in cash_flow_data]
     return simulated
 
 
