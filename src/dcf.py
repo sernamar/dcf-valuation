@@ -31,22 +31,21 @@ Example:
     return simulated
 
 
-def organize_by_simulation(cash_flow_simulations):
-    "Organize cash flow values by simulation."
-    number_of_simulations = len(cash_flow_simulations[0])
-    number_of_years = len(cash_flow_simulations)
+def combine_cash_flow_simulations(simulations):
+    number_of_simulations = len(simulations[0])
+    number_of_years = len(simulations)
     cash_flow_values = []
     for i in range(number_of_simulations):
         cash_flow = []
         for j in range(number_of_years):
-            cash_flow.append(cash_flow_simulations[j][i])
+            cash_flow.append(simulations[j][i])
         cash_flow_values.append(cash_flow)
 
     return cash_flow_values
 
 
 def simulate_dcf(cash_flow_data, discount_rate, number_of_simulations):
-    simulated = organize_by_simulation(simulate_cash_flow_values(
+    simulated = combine_cash_flow_simulations(simulate_cash_flow_values(
         cash_flow_data, number_of_simulations))
     return list(map(lambda x: compute_dcf(x, discount_rate), simulated))
 
