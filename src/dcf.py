@@ -1,3 +1,5 @@
+from statistics import mean, median, stdev
+
 from matplotlib import pyplot as plt
 from numpy.random import default_rng
 
@@ -51,6 +53,12 @@ def simulate_dcf(cash_flow_data, discount_rate, number_of_simulations):
     return list(map(lambda x: compute_dcf(x, discount_rate), simulated))
 
 
+def print_basic_statistics(data):
+    print("Mean:", round(mean(data)))
+    print("Median:", round(median(data)))
+    print("Standard Deviation:", round(stdev(data)))
+
+
 if __name__ == '__main__':
     cash_flow_data = [[100, 3], [100, 5], [400, 7], [400, 9], [600, 11]]
     discount_rate = .05
@@ -58,6 +66,8 @@ if __name__ == '__main__':
     number_of_simulations = 1000
 
     dcf = simulate_dcf(cash_flow_data, discount_rate, number_of_simulations)
+
+    print_basic_statistics(dcf)
 
     plt.hist(dcf)
     plt.show()
