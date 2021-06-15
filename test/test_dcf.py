@@ -31,10 +31,20 @@ def test_simulate_cash_flow_values():
 
 
 def test_combine_cash_flow_simulations():
-    simulations = [numpy.array([1.1, 2.2, 3.3, 4.4]), numpy.array(
-        [1.2, 3.4, 5.6, 7.8]),  numpy.array([9.8, 7.6, 5.4, 3.2])]
-    expected = [[1.1, 1.2, 9.8], [2.2, 3.4, 7.6],
-                [3.3, 5.6, 5.4], [4.4, 7.8, 3.2]]
+    # empty list
+    simulations = []
+    expected = []
+    assert combine_cash_flow_simulations(simulations) == expected
+
+    # one-element list
+    simulations = [numpy.array([100])]
+    expected = [[100]]
+    assert combine_cash_flow_simulations(simulations) == expected
+
+    # general case
+    simulations = [numpy.array([1, 2, 3, 4]), numpy.array(
+        [11, 22, 33, 44]),  numpy.array([111, 222, 333, 444])]
+    expected = [[1, 11, 111], [2, 22, 222], [3, 33, 333], [4, 44, 444]]
     assert combine_cash_flow_simulations(simulations) == expected
 
 
