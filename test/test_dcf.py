@@ -1,3 +1,5 @@
+import numpy
+
 from src.dcf import (combine_cash_flow_simulations, compute_dcf,
                      get_random_numbers, simulate_cash_flow_values,
                      simulate_dcf)
@@ -29,8 +31,10 @@ def test_simulate_cash_flow_values():
 
 
 def test_combine_cash_flow_simulations():
-    simulations = [[1, 2, 3], [4, 5, 6]]
-    expected = [[1, 4], [2, 5], [3, 6]]
+    simulations = [numpy.array([1.1, 2.2, 3.3, 4.4]), numpy.array(
+        [1.2, 3.4, 5.6, 7.8]),  numpy.array([9.8, 7.6, 5.4, 3.2])]
+    expected = [[1.1, 1.2, 9.8], [2.2, 3.4, 7.6],
+                [3.3, 5.6, 5.4], [4.4, 7.8, 3.2]]
     assert combine_cash_flow_simulations(simulations) == expected
 
 
