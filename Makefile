@@ -37,6 +37,7 @@ venv:
 	test -d $(VENV) || python3 -m venv $(VENV)
 	. $(VENV_ACTIVATE)
 	$(PIP) install --upgrade pip
+	$(PIP) install ipython
 
 dependencies: venv $(REQUIREMENTS)
 	$(PIP) install -r $(REQUIREMENTS)
