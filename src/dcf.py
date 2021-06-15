@@ -59,17 +59,23 @@ def print_basic_statistics(data):
 
 
 if __name__ == '__main__':
-    cash_flow_data = [[10000, 1000], [10000, 1000], [10000, 1000],
-                      [10000, 5000], [11000, 1500], [11000, 1500],
-                      [11000, 1500], [11000, 7000], [12000, 2000],
-                      [12000 + 200000, 50000]]
+    cash_flow_data = [10000, 10000, 10000, 10000, 11000,
+                      11000, 11000, 11000, 12000, 12000 + 200000]
+    cash_flow_data_with_errors = [[10000, 1000], [10000, 1000], [10000, 1000],
+                                  [10000, 5000], [11000, 1500], [11000, 1500],
+                                  [11000, 1500], [11000, 7000], [12000, 2000],
+                                  [12000 + 200000, 50000]]
     discount_rate = .05
+
+    dcf = compute_dcf(cash_flow_data, discount_rate)
+    print("Exact DCF", round(dcf))
 
     number_of_simulations = 1000
 
-    dcf = simulate_dcf(cash_flow_data, discount_rate, number_of_simulations)
+    estimated_dcf = simulate_dcf(
+        cash_flow_data_with_errors, discount_rate, number_of_simulations)
 
-    print_basic_statistics(dcf)
+    print_basic_statistics(estimated_dcf)
 
-    plt.hist(dcf)
+    plt.hist(estimated_dcf)
     plt.show()
