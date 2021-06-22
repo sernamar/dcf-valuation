@@ -1,6 +1,6 @@
 from statistics import mean, median, stdev
 
-from matplotlib import pyplot as plt
+from matplotlib import pyplot
 from numpy.random import default_rng
 
 
@@ -74,5 +74,5 @@ if __name__ == '__main__':
 
     print_basic_statistics(estimated_dcf)
 
-    plt.hist(estimated_dcf)
-    plt.show()
+    pyplot.hist(estimated_dcf)
+    pyplot.show()
