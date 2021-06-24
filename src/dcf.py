@@ -50,7 +50,8 @@ def combine_cash_flow_simulations(simulations):
 def simulate_dcf(cash_flow_data, discount_rate, number_of_simulations):
     simulated = combine_cash_flow_simulations(simulate_cash_flow_values(
         cash_flow_data, number_of_simulations))
-    return list(map(lambda x: compute_dcf(x, discount_rate), simulated))
+    return [compute_dcf(cash_flow_values, discount_rate)
+            for cash_flow_values in simulated]
 
 
 def print_basic_statistics(data):
